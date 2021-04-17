@@ -12,7 +12,7 @@ async function schoolHostelAssignment() {
     const errors = checkErrors(result);
     if(errors.length !== 0) {
       errors.forEach(error => console.log(error));
-      n++;
+      n++; // if the error occurs increase n till the success
       continue;
     }
 
@@ -25,6 +25,12 @@ async function schoolHostelAssignment() {
     }
     console.log('Currently registered students ==>', students);
   }
+  
+  // log final output
+  console.log('BV :', printOutput(students, 'B', 'V'));
+  console.log('AV :', printOutput(students, 'A', 'V'));
+  console.log('BNV :', printOutput(students, 'B', 'NV'));
+  console.log('ANV :', printOutput(students, 'A', 'NV'));
 }
 
 schoolHostelAssignment();
@@ -47,5 +53,10 @@ function pushToInput(input, obj) {
   } else {
     return false;
   }
+}
+
+// filter frinal output
+function printOutput(input, a, b) {
+  return input.filter(item => item.class === a && item.food === b).map(item2 => item2.id);
 }
 
