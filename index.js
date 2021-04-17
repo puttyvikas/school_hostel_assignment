@@ -15,6 +15,15 @@ async function schoolHostelAssignment() {
       n++;
       continue;
     }
+
+    const isRegistered = pushToInput(students, result);
+    if(!isRegistered) {
+      console.log('Student already registered...please try with another id');
+      n++
+    } else {
+      console.log('Student Registered successfully!', result);
+    }
+    console.log('Currently registered students ==>', students);
   }
 }
 
@@ -29,4 +38,14 @@ function checkErrors(obj) {
   return errors;
 }
 
+// check student and add
+function pushToInput(input, obj) {
+  const index = input.findIndex((item) => item.id === obj.id);
+  if(index === -1) {
+    input.push(obj);
+    return true;
+  } else {
+    return false;
+  }
+}
 
